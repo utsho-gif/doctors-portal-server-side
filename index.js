@@ -170,6 +170,15 @@ async function run(){
               const result = await doctorCollection.deleteOne(filter);
               res.send(result);
           })
+
+          //delete a user
+          app.delete('/user/:email', verifyJWT, verifyAdmin, async(req, res) => {
+            const email = req.params.email;
+            const filter = {email: email};
+            const result = await userCollection.deleteOne(filter);
+            res.send(result);
+
+          })
     }
     finally{
 
